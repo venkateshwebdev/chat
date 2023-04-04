@@ -27,6 +27,9 @@ flex-direction: column;
     height: 5rem;
     background-color: #eef1f6;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .message-container{
     display: flex;
@@ -60,33 +63,25 @@ flex-direction: column;
 form{
     display: flex;
     align-items: center;
-    justify-content: baseline;
-    margin: 0 10%;
+    justify-content: space-between;
+    border: 2px solid #407c87;
+    margin:0 10%;
 }
 .sendbutton{
     background-color: transparent;
     padding: 0.8rem;
-    border-radius: 360px;
+    border-radius: 0px;
     background-color: #407c87;
-    border: 2px solid #407c87;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border: none;
     color: white;
-    font-size: 24px;
+    font-size: 16px;
     
 }
 .sendinput{
-    height: 1.5rem;
-    margin: 1rem 0rem 1rem 2rem;
-    width: 60%;
     padding: 0.8rem;
     background-color: transparent;
-    border: 2px solid #407c87;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px ;
     outline: none;
-    border-right: none;
+    border: none;
 }
 .sendinput::placeholder{
     font-size: 16px;

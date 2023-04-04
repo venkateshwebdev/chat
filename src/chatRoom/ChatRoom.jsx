@@ -35,7 +35,6 @@ const ChatRoom = () => {
         setMessage("")
         setDummy((prev)=>prev+1)
     }
-
     const createMessage = (e)=>{
         return (
             <Message key = {e.id} message={e.message} cd={e.time} username={e.username}  />
