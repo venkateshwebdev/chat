@@ -43,14 +43,14 @@ const ChatRoom = () => {
     }
     return ( 
         <div className="cr-container">
-            <div className="cr-nav">nav</div>
+            <div className="cr-nav"></div>
             <div className="cr-main">
                 {messageList?.map((e)=>createMessage(e))}
             </div>
             <div className="cr-foot">
                 <form onSubmit={handleMessage}>
                     <input className="sendinput" placeholder="Type a Message.." type="text" value={message} onChange={(e)=>setMessage(e.target.value)} />
-                    <button className="sendbutton" type="submit">Send</button>
+                    <button className="sendbutton" type="submit">➤</button>
                 </form>
             </div>
         </div>
