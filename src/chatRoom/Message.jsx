@@ -8,11 +8,11 @@ const Message = (props) => {
             setUserSide("right")
         }
     },[])
+    const rtime = new Date(props.cd)
     return (
         <div className={`message-container ${userSide}`}>
             <div className={`message-main ${userSide}s`}>{props.message}</div>
-            <div className="date">{props.createdAt}</div>
-            <div className="user">{props.username}</div>
+            <div className="date">{rtime.toString().slice(0,21)}</div>
         </div>
      );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./chatroom.css"
-import { getDoc,addDoc,doc, collection, Timestamp, serverTimestamp, getDocs, onSnapshot } from "firebase/firestore";
+import { getDoc,addDoc,doc, collection, Timestamp, serverTimestamp, getDocs, onSnapshot,query, orderBy } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import Message from "./Message";
 import { async } from "@firebase/util";
@@ -11,11 +11,10 @@ const ChatRoom = () => {
 
     const messageRef = useRef(null)
     const dataref = collection(db,"messages")
-
-
+    const q = query(dataref,orderBy('createdAt'))
     useEffect(()=>{
         const getData = async()=>{
-            const data = await getDocs(dataref)
+            const data = await getDocs(q)
             const dataList = data.docs.map((doc)=>({...doc.data(),id:doc.id}))
             setMessageList(dataList)
             console.log(dataList);
@@ -29,7 +28,8 @@ const ChatRoom = () => {
         const dataObj = {
             message : message,
             createdAt:serverTimestamp(),
-            username : auth.currentUser.displayName
+            username : auth.currentUser.displayName,
+            time:Date.now()
         }
         await addDoc(dataref,dataObj)
         setMessage("")
@@ -38,7 +38,7 @@ const ChatRoom = () => {
 
     const createMessage = (e)=>{
         return (
-            <Message key = {e.id} message={e.message} cd={e.createdAt} username={e.username}  />
+            <Message key = {e.id} message={e.message} cd={e.time} username={e.username}  />
         )
     }
     return ( 
@@ -49,8 +49,8 @@ const ChatRoom = () => {
             </div>
             <div className="cr-foot">
                 <form onSubmit={handleMessage}>
-                    <input type="text" value={message} onChange={(e)=>setMessage(e.target.value)} />
-                    <button type="submit">Send</button>
+                    <input className="sendinput" placeholder="Type a Message.." type="text" value={message} onChange={(e)=>setMessage(e.target.value)} />
+                    <button className="sendbutton" type="submit">Send</button>
                 </form>
             </div>
         </div>

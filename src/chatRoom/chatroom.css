@@ -45,10 +45,39 @@ flex-direction: column;
     padding: 10px 20px;
 }
 .rights{
+    background-color:#69caea ;
     border-top-right-radius: 30px;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 0px;
+}
+.date{
+    padding-top: 0.3rem;
+    font-size: 10px;
+    color: grey;
+}
+form{
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+}
+.sendbutton{
+    width: 20%;
+    height: 2rem;
+    background-color: transparent;
+    border: 2px solid grey;
+}
+.sendinput{
+    margin: 1rem 2rem;
+    width: 50%;
+    padding: 0.8rem;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 3px solid grey;
+}
+.sendinput::placeholder{
+    font-size: 16px;    
 }
 /* FFD4D4 */
 /* CDE990 */
