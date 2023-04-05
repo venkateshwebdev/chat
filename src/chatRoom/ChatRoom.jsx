@@ -12,16 +12,24 @@ const ChatRoom = () => {
     const messageRef = useRef(null)
     const dataref = collection(db,"messages")
     const q = query(dataref,orderBy('createdAt'))
+    // useEffect(()=>{
+    //     const getData = async()=>{
+    //         const data = await getDocs(q)
+    //         const dataList = data.docs.map((doc)=>({...doc.data(),id:doc.id}))
+    //         setMessageList(dataList)
+    //         console.log(dataList);
+    //         console.log(messageList)
+    //     }
+    //     getData()
+    // },[dummy])
     useEffect(()=>{
-        const getData = async()=>{
-            const data = await getDocs(q)
-            const dataList = data.docs.map((doc)=>({...doc.data(),id:doc.id}))
+        onSnapshot(q,(snap)=>{
+            const dataList = snap.docs.map((doc)=>({...doc.data(),id:doc.id}))
             setMessageList(dataList)
             console.log(dataList);
             console.log(messageList)
-        }
-        getData()
-    },[dummy])
+        })
+    },[])
 
     const handleMessage = async(e)=>{
         e.preventDefault()
@@ -37,12 +45,17 @@ const ChatRoom = () => {
     }
     const createMessage = (e)=>{
         return (
-            <Message key = {e.id} message={e.message} cd={e.time} username={e.username}  />
+            <Message key = {e.id} id={e.id} message={e.message} cd={e.time} username={e.username}  />
         )
     }
     return ( 
         <div className="cr-container">
-            <div className="cr-nav"></div>
+            <div className="cr-nav">
+                <div className="nav-nav">
+                    <img src={auth.currentUser.photoURL} alt="" />
+                    {auth.currentUser.displayName}
+                </div>
+                </div>
             <div className="cr-main">
                 {messageList?.map((e)=>createMessage(e))}
             </div>
