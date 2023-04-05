@@ -22,7 +22,11 @@ const Message = (props) => {
     //     )
     // }
     const handleMessageDelete = async(e)=>{
-        await deleteDoc(doc(db,"messages",e.target.id))
+        if (e.target.classList[1]=="rights"){
+            await deleteDoc(doc(db,"messages",e.target.id))
+        }
+        
+        console.log(e)
     }
     // const handleDeleteModal = (e)=>{
     //     {console.log("modal Started")}
@@ -35,7 +39,7 @@ const Message = (props) => {
     return (
         <div className={`message-container ${userSide}`}>
             <div className="mobile"> 
-            <div id={props.id} onMouseOver={handleMessageDelete} className={`message-main ${userSide}s`}>{props.message}</div>
+            <div id={props.id} sender={props.sender} onMouseOver={handleMessageDelete} className={`message-main ${userSide}s`}>{props.message}</div>
             </div>
             <div className="laptop">
             <div id={props.id} onClick={handleMessageDelete} className={`message-main ${userSide}s`}>{props.message}</div>

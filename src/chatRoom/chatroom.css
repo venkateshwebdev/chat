@@ -31,6 +31,7 @@ flex-direction: column;
     align-items: center;
     color: white;
     font-size: 18px;
+    justify-content: space-between;
 }
 .nav-nav{
     display: flex;
@@ -39,6 +40,7 @@ flex-direction: column;
     gap: 20px;
     margin-left:25px ;
 }
+
 .cr-foot{
     position: fixed;
     bottom:0px ;
@@ -107,7 +109,10 @@ img{
     border: none;
     color: white;
     font-size: 16px;
-    
+    cursor: pointer;
+}
+.x{
+    font-size: 14px;
 }
 .sendinput{
     padding: 0.8rem 2.5rem;

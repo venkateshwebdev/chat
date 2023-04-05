@@ -4,6 +4,7 @@ import { getDoc,addDoc,doc, collection, Timestamp, serverTimestamp, getDocs, onS
 import { auth, db } from "../firebase";
 import Message from "./Message";
 import { async } from "@firebase/util";
+import Cookies from "universal-cookie";
 const ChatRoom = () => {
     const [message,setMessage] = useState("")
     const [dummy,setDummy] = useState(0)
@@ -12,6 +13,7 @@ const ChatRoom = () => {
     const messageRef = useRef(null)
     const dataref = collection(db,"messages")
     const q = query(dataref,orderBy('createdAt'))
+    const cookies = new Cookies()
     // useEffect(()=>{
     //     const getData = async()=>{
     //         const data = await getDocs(q)
@@ -37,7 +39,8 @@ const ChatRoom = () => {
             message : message,
             createdAt:serverTimestamp(),
             username : auth.currentUser.displayName,
-            time:Date.now()
+            time:Date.now(),
+            sender:auth.currentUser.email
         }
         await addDoc(dataref,dataObj)
         setMessage("")
@@ -45,16 +48,17 @@ const ChatRoom = () => {
     }
     const createMessage = (e)=>{
         return (
-            <Message key = {e.id} id={e.id} message={e.message} cd={e.time} username={e.username}  />
+            <Message key = {e.id} id={e.id} message={e.message} cd={e.time} username={e.username} sender={e.sender}  />
         )
     }
     return ( 
         <div className="cr-container">
             <div className="cr-nav">
                 <div className="nav-nav">
-                    <img src={auth.currentUser.photoURL} alt="" />
-                    {auth.currentUser.displayName}
+                    <img src={auth?.currentUser.photoURL} alt="" />
+                    {auth?.currentUser?.displayName}
                 </div>
+                <div className="y"><button className="sendbutton x" onClick={cookies.set("auth-token","")}>Logout.</button></div>
                 </div>
             <div className="cr-main">
                 {messageList?.map((e)=>createMessage(e))}
