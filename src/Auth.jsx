@@ -8,7 +8,9 @@ const Auth = (props) => {
     const handleSubmit = async(e)=>{
         e.preventDefault()
         const result = await signInWithPopup(auth,provider)
-        cookies.set("auth-token",result.user.refreshToken)
+        console.log(result.user.accessToken)
+        console.log(result.user.refreshToken)
+        cookies.set("auth-token", result.user.accessToken)
         setIsAuth(true)
         console.log(result)
     }

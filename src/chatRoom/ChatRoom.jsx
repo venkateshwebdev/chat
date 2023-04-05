@@ -5,15 +5,14 @@ import { auth, db } from "../firebase";
 import Message from "./Message";
 import { async } from "@firebase/util";
 import Cookies from "universal-cookie";
+const cookies = new Cookies()
 const ChatRoom = () => {
     const [message,setMessage] = useState("")
     const [dummy,setDummy] = useState(0)
     const [messageList,setMessageList] = useState()
-
     const messageRef = useRef(null)
     const dataref = collection(db,"messages")
     const q = query(dataref,orderBy('createdAt'))
-    const cookies = new Cookies()
     // useEffect(()=>{
     //     const getData = async()=>{
     //         const data = await getDocs(q)
@@ -55,10 +54,10 @@ const ChatRoom = () => {
         <div className="cr-container">
             <div className="cr-nav">
                 <div className="nav-nav">
-                    <img src={auth?.currentUser.photoURL} alt="" />
+                    <img src={auth?.currentUser?.photoURL} alt="" />
                     {auth?.currentUser?.displayName}
                 </div>
-                <div className="y"><button className="sendbutton x" onClick={cookies.set("auth-token","")}>Logout.</button></div>
+                <div className="y"><button className="sendbutton x" onClick={()=>cookies.set("auth-token","")}>Logout.</button></div>
                 </div>
             <div className="cr-main">
                 {messageList?.map((e)=>createMessage(e))}
