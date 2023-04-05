@@ -46,7 +46,6 @@ flex-direction: column;
     gap: 20px;
     margin-left:25px ;
     opacity: 1;
-    z-index: 500;
 }
 
 .cr-foot{
@@ -123,9 +122,8 @@ img{
     font-size: 16px;
     cursor: pointer;
     background-image: url("./pattern-8.svg");
-    background-position: 80%;
-    background-repeat: no-repeat;
     background-size: cover;
+    background-position: 30% 60%;
 
 }
 .x{

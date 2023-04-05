@@ -8,9 +8,13 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-  color: rgba(33, 32, 32, 0.096)32, 0.096);
 }
-
+.model{
+  display: none;
+}
+.modal{
+  display: block;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

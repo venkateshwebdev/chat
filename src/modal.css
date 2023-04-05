@@ -1,0 +1,29 @@
+.modil-container{
+    position: absolute;
+    width: 50%;
+    background-color:rgba(255,0,0,0.4) ;
+    top: 40%;
+    left: 20%;
+    padding: 5%;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+}
+.delitem{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.delmsg{
+    font-size: 24px;
+    font-weight: 600;
+}
+.modil-container button{
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-size: 16px;
+}

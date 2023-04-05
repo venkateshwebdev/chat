@@ -54,7 +54,7 @@ const ChatRoom = () => {
         <div className="cr-container">
             <div className="cr-nav">
                 <div className="nav-nav">
-                    <img src={auth?.currentUser?.photoURL} alt="" />
+                    <img src={auth?.currentUser?.photoURL} alt="👤"/>
                     {auth?.currentUser?.displayName}
                 </div>
                 <div className="y"><button className="sendbutton x" onClick={()=>cookies.set("auth-token","")}>Logout.</button></div>
