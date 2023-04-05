@@ -71,12 +71,14 @@ flex-direction: column;
     display: none;
 }
 .message-main{
-    background-color:#b3b6e63d ;
+    background-color:#b3b6e6aa ;
     border-top-right-radius: 30px;
     border-top-left-radius: 30px;
     border-bottom-right-radius: 30px;
     padding: 10px 20px;
     box-shadow: 0px 0px 6px #d0d1e138;
+    font-weight: 600;
+    font-size: 16px;
 }
 .rights{
     background-color:#b1e2e6 ;
@@ -87,9 +89,10 @@ flex-direction: column;
     box-shadow: 0px 0px 6px #d3e1e25f;
 }
 .date{
-    padding-top: 0.3rem;
+    padding: 0.2rem 0.3rem 0 0.3rem;
     font-size: 10px;
-    color: grey;
+    color: black;
+    font-weight: 600;
 }
 form{
     display: flex;

@@ -5,6 +5,7 @@ import "./chatroom.css"
 const Message = (props) => {
     const [userSide,setUserSide] = useState("")
     const [del,setdel] = useState(false)
+    const [zone,setZone] = useState("AM")
 
     // const doc = collection(db,"messages")
     useEffect(()=>{
@@ -36,6 +37,8 @@ const Message = (props) => {
 
     // }
     const rtime = new Date(props.cd)
+    const hours = rtime.toString().slice(16,18)-12
+    const h24 = rtime.toString().slice(16,18)
     return (
         <div className={`message-container ${userSide}`}>
             <div className="mobile"> 
@@ -44,7 +47,7 @@ const Message = (props) => {
             <div className="laptop">
             <div id={props.id} onClick={handleMessageDelete} className={`message-main ${userSide}s`}>{props.message}</div>
             </div>
-            <div className="date">{rtime.toString().slice(0,21)}</div>
+            <div className="date">{hours}{rtime.toString().slice(18,21)} {h24>11?"PM":"AM"}</div>
         </div>
      );
 }
