@@ -10,6 +10,9 @@ html{
   scroll-behavior: smooth;
   overflow-x: hidden;
   background-color: #eef1f6;
+  background-image: url("./pattern-10.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 code {
