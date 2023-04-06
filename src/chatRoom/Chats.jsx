@@ -39,10 +39,11 @@ const Chats = () => {
         return(
             !(auth.currentUser.email===e.id)&&<Chatcard username={e.userName} id={e.id} />
         )
+        
     }
     return ( 
         <div className="chat-container">
-            <div className="chat-nav">chat</div>
+            <div className="chat-nav">{auth.currentUser.displayName}</div>
             <div className="chat-main">
                 {usersList?.map((e)=>(createCard(e)))}
             </div>
