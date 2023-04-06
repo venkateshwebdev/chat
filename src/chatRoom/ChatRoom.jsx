@@ -1,18 +1,23 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "./chatroom.css"
-import { getDoc,addDoc,doc, collection, Timestamp, serverTimestamp, getDocs, onSnapshot,query, orderBy } from "firebase/firestore";
+import { getDoc,addDoc,doc, collection, Timestamp, serverTimestamp, getDocs, onSnapshot,query, orderBy, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import Message from "./Message";
 import { async } from "@firebase/util";
 import Cookies from "universal-cookie";
+import { useNavigate } from "react-router";
+import Auth from "../Auth";
+import ModalContext from "../modalcontext";
 const cookies = new Cookies()
 const ChatRoom = () => {
+    const cont = useContext(ModalContext)
     const [message,setMessage] = useState("")
     const [dummy,setDummy] = useState(0)
     const [messageList,setMessageList] = useState()
     const messageRef = useRef(null)
     const dataref = collection(db,"messages")
     const q = query(dataref,orderBy('createdAt'))
+    const navigate = useNavigate()
     // useEffect(()=>{
     //     const getData = async()=>{
     //         const data = await getDocs(q)
@@ -23,6 +28,11 @@ const ChatRoom = () => {
     //     }
     //     getData()
     // },[dummy])
+    useEffect(()=>{
+        const createCollecion = async()=>{
+            await setDoc
+        }
+    },[])
     useEffect(()=>{
         onSnapshot(q,(snap)=>{
             const dataList = snap.docs.map((doc)=>({...doc.data(),id:doc.id}))
@@ -48,14 +58,17 @@ const ChatRoom = () => {
             <Message key = {e.id} id={e.id} message={e.message} cd={e.time} username={e.username} sender={e.sender}  />
         )
     }
+    const handleLogout = ()=>{
+        cont.setCRoom(false)
+    }
     return ( 
         <div className="cr-container">
             <div className="cr-nav">
                 <div className="nav-nav">
                     <img src={auth?.currentUser?.photoURL} alt="👤"/>
-                    {auth?.currentUser?.displayName}
+                    {cont.uid}
                 </div>
-                <div className="y"><button className="sendbutton x" onClick={()=>cookies.set("auth-token","")}>Logout.</button></div>
+                <div className="y"><button className="sendbutton x" onClick={handleLogout}>Back.</button></div>
                 </div>
             <div className="cr-main">
                 {messageList?.map((e)=>createMessage(e))}

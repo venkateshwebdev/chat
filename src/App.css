@@ -12,7 +12,13 @@
 .model{
   display: none;
 }
+.chetRoom{
+  display: none;
+}
 .modal{
+  display: block;
+}
+.chatRoom{
   display: block;
 }
 @media (prefers-reduced-motion: no-preference) {

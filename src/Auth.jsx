@@ -4,9 +4,13 @@ import {db,auth,provider} from './firebase'
 import Cookies from 'universal-cookie'
 import { useEffect, useRef, useState } from 'react';
 import { addDoc, collection, doc, getDocs, query, where,setDoc, onSnapshot } from "@firebase/firestore";
+import { useContext } from "react";
+import userContext from "./usersContext";
+import ModalContext from "./modalcontext";
 const cookies = new Cookies();
 // import google from "./google.png"
 const Auth = (props) => {
+    const context = useContext(ModalContext)
     const dataref = collection(db,"users")
     const [usersList,setUsersList] = useState();
     const [nickname,setNickname] = useState("");
@@ -24,7 +28,7 @@ const Auth = (props) => {
     const handleSubmit = async(e)=>{
         e.preventDefault()
         const result = await signInWithPopup(auth,provider)
-        setAuthToken(result.user.accessToken)
+        setAuthToken(result.user.authToken)
         await onSnapshot(dataref,(snap)=>{
             const data = snap.docs.map((e)=>({...e.data(),id:e.id}))
             setUsersList(data)

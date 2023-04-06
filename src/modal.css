@@ -1,7 +1,8 @@
 .modil-container{
     position: absolute;
     width: 50%;
-    background-color:rgba(255,0,0,0.4) ;
+    background:rgba(255,0,0,0.4);
+    backdrop-filter: blur(2px);
     top: 40%;
     left: 20%;
     padding: 5%;

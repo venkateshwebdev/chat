@@ -5,23 +5,30 @@ import ChatRoom from "./chatRoom/ChatRoom";
 import { useEffect, useState } from "react";
 import Modal from "./Modal";
 import ModalContext from "./modalcontext";
+import { BrowserRouter } from "react-router-dom";
+import Chats from "./chatRoom/Chats";
 const cookies = new Cookies()
 const App = () => {
   const [isAuth,setIsAuth] = useState(cookies.get("auth-token"))
-  const [room,setRoom] = useState(null)
   const [modal,setModal] = useState(false)
-  const [isDelete,setIsDelete] = useState(false)
+  const [cRoom,setCRoom] = useState(false)
   const [delId,setDelId] = useState("")
+  const [uid,setUid] = useState("");
   if(!isAuth){
     return <Auth setIsAuth={setIsAuth} />
   }
   return(
-    <ModalContext.Provider value={{modal,setModal,delId,setDelId}}>
+    <BrowserRouter>
+    <ModalContext.Provider value={{modal,setModal,delId,setDelId,uid,setUid,cRoom,setCRoom}}>
     <div className={ ` model ${modal&&"modal"}`}>
       <Modal />
     </div>
-    <ChatRoom />
+    <div className={ ` chetRoom ${cRoom&&"chatRoom"}`}>
+      <ChatRoom />
+    </div>
+    {!(cRoom)&&<Chats />}
     </ModalContext.Provider>
+    </BrowserRouter>
   )
 }
  
