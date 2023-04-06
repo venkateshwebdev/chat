@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import "./chatroom.css"
-import { getDoc,addDoc,doc, collection, Timestamp, serverTimestamp, getDocs, onSnapshot,query, orderBy, setDoc } from "firebase/firestore";
+import { getDoc,addDoc,doc, collection, Timestamp, serverTimestamp, getDocs, onSnapshot,query, orderBy, setDoc, where } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import Message from "./Message";
 import { async } from "@firebase/util";
@@ -16,7 +16,7 @@ const ChatRoom = () => {
     const [messageList,setMessageList] = useState()
     const messageRef = useRef(null)
     const dataref = collection(db,"messages")
-    const q = query(dataref,orderBy('createdAt'))
+    const q = query(dataref,where("sender","==",auth.currentUser.displayName),orderBy('createdAt'))
     const navigate = useNavigate()
     // useEffect(()=>{
     //     const getData = async()=>{
@@ -28,11 +28,6 @@ const ChatRoom = () => {
     //     }
     //     getData()
     // },[dummy])
-    useEffect(()=>{
-        const createCollecion = async()=>{
-            await setDoc
-        }
-    },[])
     useEffect(()=>{
         onSnapshot(q,(snap)=>{
             const dataList = snap.docs.map((doc)=>({...doc.data(),id:doc.id}))
@@ -47,7 +42,8 @@ const ChatRoom = () => {
             createdAt:serverTimestamp(),
             username : auth.currentUser.displayName,
             time:Date.now(),
-            sender:auth.currentUser.email
+            sender:auth.currentUser.email,
+            receiver:cont.uid
         }
         await addDoc(dataref,dataObj)
         setMessage("")
@@ -65,7 +61,7 @@ const ChatRoom = () => {
         <div className="cr-container">
             <div className="cr-nav">
                 <div className="nav-nav">
-                    <img src={auth?.currentUser?.photoURL} alt="👤"/>
+                    <img src={"https://cdn.vectorstock.com/i/preview-1x/11/69/blank-avatar-profile-picture-vector-45161169.jpg"} alt="👤"/>
                     {cont.uid}
                 </div>
                 <div className="y"><button className="sendbutton x" onClick={handleLogout}>Back.</button></div>
