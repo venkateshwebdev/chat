@@ -27,8 +27,6 @@ const ChatRoom = () => {
         onSnapshot(q,(snap)=>{
             const dataList = snap.docs.map((doc)=>({...doc.data(),id:doc.id}))
             setMessageList(dataList)
-            console.log(dataList);
-            console.log(messageList)
         })
     },[])
 
@@ -63,7 +61,7 @@ const ChatRoom = () => {
                 {messageList?.map((e)=>createMessage(e))}
             </div>
             <div className="cr-foot">
-                <form onSubmit={handleMessage}>
+                <form className="chatroomform" onSubmit={handleMessage}>
                     <input className="sendinput" placeholder="Type a Message.." type="text" value={message} onChange={(e)=>setMessage(e.target.value)} />
                     <button className="sendbutton" type="submit">➤</button>
                 </form>

@@ -1,0 +1,58 @@
+.nouserInput{
+    display: none;
+}
+.nosignIn{
+    display: none;
+}
+.signIn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30%;
+    flex-direction: column;
+    gap: 30px;
+    font-size: 24px;
+}
+.signInButton{
+    padding: 10px 70px;
+    outline: none;
+    background-color: transparent;
+    border: 2px solid #407c87;
+    font-size: 18px;
+    color: #333333;
+    box-shadow: 6px 6px 0px #407c87;
+}
+.signInButton:hover{
+    box-shadow: none;
+    box-shadow: -5px -5px 0px #407c87;
+}
+.image{
+    height: 50px;
+    width: 140px;
+}
+.signinwrap{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.userInput{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30%;
+    font-size: 24px;
+    gap: 20px;
+}
+.input{
+    border:2px solid #407c87;
+    padding: 10px 30px;
+    font-size: 18px;
+    text-transform: capitalize;
+    outline: none;
+    background-color: transparent;
+}
+.error{
+    color: red;
+    font-size: 16px;
+    font-weight: 600;
+}

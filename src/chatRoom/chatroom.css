@@ -91,10 +91,11 @@ flex-direction: column;
 .date{
     padding: 0.2rem 0.3rem 0 0.3rem;
     font-size: 10px;
-    color: black;
+    color: rgb(61, 61, 61);
     font-weight: 600;
+    user-select: none;
 }
-form{
+.chatroomform{
     display: flex;
     align-items: center;
     justify-content: space-between;
