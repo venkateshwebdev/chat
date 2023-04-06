@@ -15,8 +15,9 @@ const ChatRoom = () => {
     const [dummy,setDummy] = useState(0)
     const [messageList,setMessageList] = useState()
     const messageRef = useRef(null)
+    const [cmet,setCmet] = useState(false)
     const dataref = collection(db,"messages")
-    const q = query(dataref,where("sender","==",auth.currentUser.displayName),orderBy('createdAt'))
+    const q = query(dataref,orderBy('createdAt'))
     const navigate = useNavigate()
     // useEffect(()=>{
     //     const getData = async()=>{
@@ -50,8 +51,9 @@ const ChatRoom = () => {
         setDummy((prev)=>prev+1)
     }
     const createMessage = (e)=>{
+        {console.log(e)}
         return (
-            <Message key = {e.id} id={e.id} message={e.message} cd={e.time} username={e.username} sender={e.sender}  />
+            e.sender===auth.currentUser.email&&e.receiver===cont.uid&&<Message key = {e.id} id={e.id} message={e.message} cd={e.time} username={e.username} sender={e.sender}  />
         )
     }
     const handleLogout = ()=>{
