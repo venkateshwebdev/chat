@@ -13,13 +13,14 @@ const App = () => {
   const [modal,setModal] = useState(false)
   const [cRoom,setCRoom] = useState(false)
   const [delId,setDelId] = useState("")
-  const [uid,setUid] = useState("");
+  const [uid,setUid] = useState(""); 
+  const [isSet,setIsSet] = useState(false)
   if(!isAuth){
     return <Auth setIsAuth={setIsAuth} />
   }
   return(
     <BrowserRouter>
-    <ModalContext.Provider value={{modal,setModal,delId,setDelId,uid,setUid,cRoom,setCRoom}}>
+    <ModalContext.Provider value={{modal,setModal,delId,setDelId,uid,setUid,cRoom,setCRoom,isSet,setIsSet}}>
     <div className={ ` model ${modal&&"modal"}`}>
       <Modal />
     </div>

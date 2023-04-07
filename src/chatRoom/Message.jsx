@@ -32,10 +32,7 @@ const Message = (props) => {
     return (
         <div className={`message-container ${userSide}`}>
             <div className="mobile"> 
-            <div id={props.id} sender={props.sender} onClick={handleMessageDelete} className={`message-main ${userSide}s`}>{props.message}</div>
-            </div>
-            <div className="laptop">
-            <div id={props.id} onClick={handleMessageDelete} className={`message-main ${userSide}s`}>{props.message}</div>
+            <div id={props.id}  onClick={handleMessageDelete} className={`message-main ${userSide}s`}>{props.message}</div>
             </div>
             <div className="date">{hours}{rtime.toString().slice(18,21)} {h24>11?"PM":"AM"}</div>
         </div>

@@ -66,9 +66,6 @@ flex-direction: column;
 .right{
     align-items: flex-end;
 }
-.mobile{
-    display: none;
-}
 .message-main{
     background-color:#b3b6e6aa ;
     border-top-right-radius: 30px;
@@ -144,12 +141,3 @@ img{
 }
 /* FFD4D4 */
 /* CDE990 */
-
-@media screen and (max-width:640px) {
-    .laptop{
-        display: none;
-    }
-    .mobile{
-        display: block;
-    }
-}

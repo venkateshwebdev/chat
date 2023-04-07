@@ -14,6 +14,7 @@ const ChatRoom = () => {
     const [message,setMessage] = useState("")
     const [dummy,setDummy] = useState(0)
     const [messageList,setMessageList] = useState()
+    const[custom,setCustom] = useState([]);
     const messageRef = useRef(null)
     const [cmet,setCmet] = useState(false)
     const dataref = collection(db,"messages")
@@ -34,6 +35,7 @@ const ChatRoom = () => {
             const dataList = snap.docs.map((doc)=>({...doc.data(),id:doc.id}))
             setMessageList(dataList)
         })
+        console.log(messageList)
     },[])
 
     const handleMessage = async(e)=>{
@@ -51,9 +53,10 @@ const ChatRoom = () => {
         setDummy((prev)=>prev+1)
     }
     const createMessage = (e)=>{
-        {console.log(e)}
+        if(e.receiver===auth.currentUser.email||e.sender===auth.currentUser.email&&e.receiver===cont.uid||e.sender===cont.uid)
         return (
-            e.sender===auth.currentUser.email&&e.receiver===cont.uid&&<Message key = {e.id} id={e.id} message={e.message} cd={e.time} username={e.username} sender={e.sender}  />
+           <Message key = {e.id} id={e.id} message={e.message} cd={e.time} username={e.username} sender={e.sender}  />
+            
         )
     }
     const handleLogout = ()=>{
@@ -66,10 +69,10 @@ const ChatRoom = () => {
                     <img src={"https://cdn.vectorstock.com/i/preview-1x/11/69/blank-avatar-profile-picture-vector-45161169.jpg"} alt="👤"/>
                     {cont.uid}
                 </div>
-                <div className="y"><button className="sendbutton x" onClick={handleLogout}>Back.</button></div>
+                <div className="y"><button className="sendbutton x" onClick={handleLogout}>Back</button></div>
                 </div>
             <div className="cr-main">
-                {messageList?.map((e)=>createMessage(e))}
+            {messageList?.map((e)=>createMessage(e))}
             </div>
             <div className="cr-foot">
                 <form className="chatroomform" onSubmit={handleMessage}>

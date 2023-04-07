@@ -1,12 +1,13 @@
 import { collection,onSnapshot } from "@firebase/firestore"
 import { useContext, useEffect, useState } from "react"
+import { Navigate, useNavigate } from "react-router"
 import { auth, db } from "../firebase"
 import ModalContext from "../modalcontext"
 import ChatRoom from "./ChatRoom"
 import "./chats.css"
 const Chats = () => {
     const [usersList,setUsersList] = useState();
-    
+    const navigate = useNavigate();
     const cont = useContext(ModalContext)
     const dataref = collection(db,"users")
     useEffect(()=>{
@@ -23,6 +24,7 @@ const Chats = () => {
         const handleClick = ()=>{
             cont.setUid(props.id)
             cont.setCRoom(true)
+            cont.setIsSet(true)
         }
         return(
             <div className="chart-cc" onClick={handleClick} id={props.id}>
@@ -37,13 +39,13 @@ const Chats = () => {
     }
     const createCard = (e)=>{
         return(
-            !(auth.currentUser.email===e.id)&&<Chatcard username={e.userName} id={e.id} />
+            !(auth.currentUser.email===e.id)&&<Chatcard username={e.id} id={e.id} />
         )
         
     }
     return ( 
         <div className="chat-container">
-            <div className="chat-nav">{auth.currentUser.displayName}</div>
+            <div className="chat-nav">{auth?.currentUser?.displayName}</div>
             <div className="chat-main">
                 {usersList?.map((e)=>(createCard(e)))}
             </div>
