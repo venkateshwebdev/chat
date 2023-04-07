@@ -24,7 +24,7 @@ const Chats = () => {
         const handleClick = ()=>{
             cont.setUid(props.id)
             cont.setCRoom(true)
-            cont.setIsSet(true)
+            cont.setUserName(props.username)
         }
         return(
             <div className="chart-cc" onClick={handleClick} id={props.id}>
@@ -39,7 +39,7 @@ const Chats = () => {
     }
     const createCard = (e)=>{
         return(
-            !(auth.currentUser.email===e.id)&&<Chatcard username={e.id} id={e.id} />
+            !(auth.currentUser.email===e.id)&&<Chatcard username={e.userName} id={e.id} />
         )
         
     }

@@ -53,11 +53,16 @@ const ChatRoom = () => {
         setDummy((prev)=>prev+1)
     }
     const createMessage = (e)=>{
-        if(e.receiver===auth.currentUser.email||e.sender===auth.currentUser.email&&e.receiver===cont.uid||e.sender===cont.uid)
-        return (
-           <Message key = {e.id} id={e.id} message={e.message} cd={e.time} username={e.username} sender={e.sender}  />
-            
+        if(e.receiver===auth.currentUser.email||e.sender===auth.currentUser.email&&e.receiver===cont.uid||e.sender===cont.uid){
+            return (
+                <Message key = {e.id} id={e.id} message={e.message} cd={e.time} username={e.username} sender={e.sender}  />
+                 
+             )
+        }
+        return(
+            console.log("Hello")
         )
+
     }
     const handleLogout = ()=>{
         cont.setCRoom(false)
@@ -67,7 +72,7 @@ const ChatRoom = () => {
             <div className="cr-nav">
                 <div className="nav-nav">
                     <img src={"https://cdn.vectorstock.com/i/preview-1x/11/69/blank-avatar-profile-picture-vector-45161169.jpg"} alt="👤"/>
-                    {cont.uid}
+                    {cont.username}
                 </div>
                 <div className="y"><button className="sendbutton x" onClick={handleLogout}>Back</button></div>
                 </div>
