@@ -53,7 +53,7 @@ const ChatRoom = () => {
         setDummy((prev)=>prev+1)
     }
     const createMessage = (e)=>{
-        if(e.receiver===auth.currentUser.email||e.sender===auth.currentUser.email&&e.receiver===cont.uid||e.sender===cont.uid){
+        if(e.receiver===auth.currentUser.email&&e.sender===cont.id||e.receiver===cont.uid&&e.sender===auth.currentUser.email){
             return (
                 <Message key = {e.id} id={e.id} message={e.message} cd={e.time} username={e.username} sender={e.sender}  />
                  
