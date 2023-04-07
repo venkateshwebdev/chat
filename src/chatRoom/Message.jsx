@@ -27,14 +27,17 @@ const Message = (props) => {
         await deleteDoc(doc(db,"messages",e.target.id))
     }
     const rtime = new Date(props.cd)
-    const hours = rtime.toString().slice(16,18)-12
+    const hours = rtime.toString().slice(16,18)
     const h24 = rtime.toString().slice(16,18)
+    console.log(rtime);
+    console.log(hours);
+    console.log(h24)
     return (
         <div className={`message-container ${userSide}`}>
             <div className="mobile"> 
             <div id={props.id}  onClick={handleMessageDelete} className={`message-main ${userSide}s`}>{props.message}</div>
             </div>
-            <div className="date">{hours}{rtime.toString().slice(18,21)} {h24>11?"PM":"AM"}</div>
+            <div className="date">{hours>12?hours-12:hours}{rtime.toString().slice(18,21)} {h24>11?"PM":"AM"}</div>
         </div>
      );
 }

@@ -45,7 +45,9 @@ const Chats = () => {
     }
     return ( 
         <div className="chat-container">
-            <div className="chat-nav">{auth?.currentUser?.displayName}</div>
+            <div className="chat-nav">
+                <img src={auth?.currentUser?.photoURL} alt="" />
+                {auth?.currentUser?.displayName}</div>
             <div className="chat-main">
                 {usersList?.map((e)=>(createCard(e)))}
             </div>
